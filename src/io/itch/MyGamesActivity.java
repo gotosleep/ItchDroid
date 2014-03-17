@@ -10,9 +10,14 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -28,6 +33,17 @@ public class MyGamesActivity extends Activity {
         this.gamesList = (ListView) findViewById(id.listViewGames);
         this.gamesAdapter = new GameAdapter(this, R.layout.list_item_game);
         this.gamesList.setAdapter(this.gamesAdapter);
+        this.gamesList.setOnItemClickListener(new OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> list, View item, int position, long id) {
+                Game game = gamesAdapter.getItem(position);
+                if (game != null && game.getUrl() != null) {
+                    Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(game.getUrl()));
+                    startActivity(i);
+                }
+            }
+        });
         this.updateGames();
     }
 
