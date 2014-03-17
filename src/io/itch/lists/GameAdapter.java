@@ -1,6 +1,7 @@
 package io.itch.lists;
 
 import io.itch.R;
+import io.itch.models.Earning;
 import io.itch.models.Game;
 
 import java.text.DateFormat;
@@ -65,11 +66,16 @@ public class GameAdapter extends ArrayAdapter<Game> {
             if (game.getCoverUrl() != null) {
                 Picasso.with(getContext()).load(game.getCoverUrl()).into(cover);
             } else {
-                // cover.setImageBitmap(null);
+                cover.setImageResource(R.drawable.ic_launcher);
             }
 
-            TextView earnings = (TextView) result.findViewById(R.id.textViewEarningsValue);
-            earnings.setText(currencyFormat.format(0));
+            TextView earningsText = (TextView) result.findViewById(R.id.textViewEarningsValue);
+            Earning earnings = game.getDefaultEarnings();
+            if (earnings != null) {
+                earningsText.setText(earnings.getAmountFormatted());
+            } else {
+                earningsText.setText(currencyFormat.format(0));
+            }
         }
         return result;
     }

@@ -1,6 +1,7 @@
 package io.itch.models;
 
 import java.util.Date;
+import java.util.List;
 
 public class Game {
 
@@ -21,6 +22,7 @@ public class Game {
     private String shortText;
     private String type;
     private String coverUrl;
+    private List<Earning> earnings;
 
     public Boolean getpOSX() {
         return pOSX;
@@ -158,4 +160,26 @@ public class Game {
         this.coverUrl = coverUrl;
     }
 
+    public List<Earning> getEarnings() {
+        return earnings;
+    }
+
+    public void setEarnings(List<Earning> earnings) {
+        this.earnings = earnings;
+    }
+
+    public Earning getDefaultEarnings() {
+        Earning result = null;
+        if (this.earnings != null && this.earnings.size() > 0) {
+            for (Earning e : this.earnings) {
+                if ("USD".equalsIgnoreCase(e.getCurrency())) {
+                    result = e;
+                    break;
+                } else if (result == null) {
+                    result = e;
+                }
+            }
+        }
+        return result;
+    }
 }
