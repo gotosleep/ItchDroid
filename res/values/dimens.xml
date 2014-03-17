@@ -7,7 +7,9 @@
     <dimen name="game_title_margin_bottom">20dp</dimen>
     <dimen name="game_section_margin_bottom">15dp</dimen>
     <dimen name="game_list_item_horizontal_padding">20dp</dimen>
-    <dimen name="game_list_item_vertical_padding">10dp</dimen>
+    <dimen name="game_list_item_vertical_padding">20dp</dimen>
+    <dimen name="game_list_item_top_padding">10dp</dimen>
     <dimen name="game_field_margin_bottom">5dp</dimen>
+    <dimen name="game_label_margin_left">30dp</dimen>
 
 </resources>

@@ -19,17 +19,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/game_list_item_vertical_padding"
-        android:paddingLeft="@dimen/game_list_item_horizontal_padding"
-        android:paddingRight="@dimen/game_list_item_horizontal_padding"
-        android:paddingTop="@dimen/game_list_item_vertical_padding" >
+        android:paddingTop="@dimen/game_list_item_top_padding" >
 
         <TextView
             android:id="@+id/textViewGameTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="false"
-            android:layout_marginBottom="@dimen/game_title_margin_bottom"
+            android:layout_marginBottom="@dimen/game_section_margin_bottom"
             android:textSize="28sp"
             android:textStyle="bold" />
 
@@ -42,7 +39,7 @@
             android:baselineAligned="false" >
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" >
 
@@ -53,7 +50,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginRight="@dimen/game_label_margin_right"
                     android:text="@string/game_views_label"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/textViewViewsValue"
@@ -67,7 +64,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" >
 
@@ -78,7 +75,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginRight="@dimen/game_label_margin_right"
                     android:text="@string/game_purchases_label"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/textViewPurchasesValue"
@@ -92,7 +89,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" >
 
@@ -103,7 +100,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginRight="@dimen/game_label_margin_right"
                     android:text="@string/game_downloads_label"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/textViewDownloadsValue"
@@ -124,9 +121,10 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/viewGroupStats"
             android:layout_marginBottom="@dimen/game_field_margin_bottom"
+            android:layout_marginLeft="@dimen/game_label_margin_left"
             android:layout_marginRight="@dimen/game_label_margin_right"
             android:text="@string/game_published_label"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
@@ -136,7 +134,7 @@
             android:layout_alignBaseline="@+id/textViewPublishedLabel"
             android:layout_toRightOf="@+id/textViewPublishedLabel"
             android:text="@string/game_views_label"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/textViewEarningsLabel"
@@ -144,10 +142,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/textViewPublishedLabel"
-            android:layout_marginBottom="@dimen/game_section_margin_bottom"
+            android:layout_marginLeft="@dimen/game_label_margin_left"
             android:layout_marginRight="@dimen/game_label_margin_right"
             android:text="@string/game_earnings_label"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
@@ -157,7 +155,7 @@
             android:layout_alignBaseline="@+id/textViewEarningsLabel"
             android:layout_toRightOf="@+id/textViewEarningsLabel"
             android:text="@string/game_views_label"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
     </RelativeLayout>
 
 </RelativeLayout>
