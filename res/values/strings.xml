@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Itch</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="game_views_label">VIEWS</string>
+    <string name="game_purchases_label">PURCHASES</string>
+    <string name="game_downloads_label">DOWNLOADS</string>
+    <string name="game_published_label">Published</string>
+    <string name="game_published_not_value">Not published, yet</string>
+    <string name="my_games_activity_title">My Games</string>
+    <string name="game_earnings_label">Earnings</string>
+    
+</resources>
