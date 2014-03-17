@@ -44,6 +44,11 @@ public class MyGamesActivity extends Activity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         this.updateGames();
     }
 
@@ -61,6 +66,7 @@ public class MyGamesActivity extends Activity {
             @Override
             public void success(MyGamesResponse result, Response arg1) {
                 if (gamesAdapter != null && result != null && result.getGames() != null) {
+                    gamesAdapter.clear();
                     for (Game game : result.getGames()) {
                         gamesAdapter.add(game);
                     }
