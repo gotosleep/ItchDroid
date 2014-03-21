@@ -3,9 +3,10 @@ package io.itch;
 import io.itch.R.id;
 import io.itch.api.ItchApi;
 import io.itch.api.ItchApiClient;
+import io.itch.api.responses.GamesResponse;
+import io.itch.authentication.SessionHelper;
 import io.itch.lists.GameAdapter;
 import io.itch.models.Game;
-import io.itch.models.MyGamesResponse;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -15,6 +16,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -30,6 +32,7 @@ public class MyGamesActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_games);
+        SessionHelper.getInstance().restoreSession(this);
         this.gamesList = (ListView) findViewById(id.listViewGames);
         this.gamesAdapter = new GameAdapter(this, R.layout.list_item_game);
         this.gamesList.setAdapter(this.gamesAdapter);
@@ -56,15 +59,25 @@ public class MyGamesActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.my_games, menu);
-        return false;
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case R.id.action_login:
+            SessionHelper.getInstance().login(this);
+            break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void updateGames() {
         ItchApi api = ItchApiClient.getClient();
-        api.listMyGames(new Callback<MyGamesResponse>() {
+        api.listMyGames(new Callback<GamesResponse>() {
 
             @Override
-            public void success(MyGamesResponse result, Response arg1) {
+            public void success(GamesResponse result, Response arg1) {
                 if (gamesAdapter != null && result != null && result.getGames() != null) {
                     gamesAdapter.clear();
                     for (Game game : result.getGames()) {

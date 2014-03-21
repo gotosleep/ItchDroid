@@ -1,12 +1,14 @@
-package io.itch.models;
+package io.itch.api.responses;
+
+import io.itch.models.Game;
 
 import java.util.List;
 
-public class MyGamesResponse {
+public class GamesResponse {
 
     private List<Game> games;
 
-    private MyGamesResponse(List<Game> games) {
+    private GamesResponse(List<Game> games) {
         super();
         this.games = games;
     }
@@ -18,5 +20,7 @@ public class MyGamesResponse {
     public void setGames(List<Game> games) {
         this.games = games;
     }
+    
+    
 
 }
