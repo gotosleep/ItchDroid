@@ -1,9 +1,6 @@
 package io.itch.api;
 
-import retrofit.ErrorHandler;
 import retrofit.RestAdapter;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 import retrofit.converter.GsonConverter;
 import android.text.TextUtils;
 
@@ -14,12 +11,12 @@ import com.google.gson.GsonBuilder;
 public class ItchApiClient {
 
     private static ItchApi SHARED_INSTANCE;
-    private static final Object LOCK = new Object();
+    private static final Object INSTANCE_LOCK = new Object();
     private static String token;
 
     public static ItchApi getClient() {
         if (SHARED_INSTANCE == null) {
-            synchronized (LOCK) {
+            synchronized (INSTANCE_LOCK) {
                 if (SHARED_INSTANCE == null) {
                     Gson gson = new GsonBuilder()
                             .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
@@ -32,7 +29,6 @@ public class ItchApiClient {
                     RestAdapter adapter = new RestAdapter.Builder()
                             .setEndpoint(endPoint)
                             .setConverter(new GsonConverter(gson))
-                            .setErrorHandler(new MyErrorHandler())
                             .build();
                     SHARED_INSTANCE = adapter.create(ItchApi.class);
                 }
@@ -47,19 +43,8 @@ public class ItchApiClient {
 
     public static void setToken(String token) {
         ItchApiClient.token = token;
-        synchronized (LOCK) {
+        synchronized (INSTANCE_LOCK) {
             SHARED_INSTANCE = null;
-        }
-    }
-
-    private static class MyErrorHandler implements ErrorHandler {
-        @Override
-        public Throwable handleError(RetrofitError cause) {
-            Response r = cause.getResponse();
-            if (r != null && r.getStatus() == 401) {
-                // return new UnauthorizedException(cause);
-            }
-            return cause;
         }
     }
 }

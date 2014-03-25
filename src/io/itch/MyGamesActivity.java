@@ -5,6 +5,7 @@ import io.itch.api.ItchApi;
 import io.itch.api.ItchApiClient;
 import io.itch.api.responses.GamesResponse;
 import io.itch.authentication.SessionHelper;
+import io.itch.authentication.SessionHelper.SessionCallback;
 import io.itch.lists.GameAdapter;
 import io.itch.models.Game;
 import retrofit.Callback;
@@ -32,7 +33,6 @@ public class MyGamesActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_games);
-        SessionHelper.getInstance().restoreSession(this);
         this.gamesList = (ListView) findViewById(id.listViewGames);
         this.gamesAdapter = new GameAdapter(this, R.layout.list_item_game);
         this.gamesList.setAdapter(this.gamesAdapter);
@@ -66,10 +66,34 @@ public class MyGamesActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case R.id.action_login:
-            SessionHelper.getInstance().login(this);
+            // SessionHelper.getInstance().login(this);
+            break;
+        case R.id.action_logout:
+            SessionHelper.getInstance().logout(this, new SessionCallback() {
+
+                @Override
+                public void onSuccess() {
+                    super.onSuccess();
+                    startActivity(new Intent(MyGamesActivity.this, ItchActivity.class));
+                    finish();
+                }
+
+            });
             break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        if (SessionHelper.getInstance().isLoggedIn()) {
+            menu.findItem(R.id.action_login).setVisible(false);
+            menu.findItem(R.id.action_logout).setVisible(true);
+        } else {
+            menu.findItem(R.id.action_login).setVisible(true);
+            menu.findItem(R.id.action_logout).setVisible(false);
+        }
+        return super.onPrepareOptionsMenu(menu);
     }
 
     private void updateGames() {
