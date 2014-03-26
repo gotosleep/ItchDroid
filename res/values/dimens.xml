@@ -11,7 +11,7 @@
     <dimen name="game_list_item_top_padding">10dp</dimen>
     <dimen name="game_field_margin_bottom">5dp</dimen>
     <dimen name="game_label_margin_left">30dp</dimen>
-    <dimen name="itch_activity_logo_margin_bottom">40dp</dimen>
+    <dimen name="itch_activity_logo_margin_bottom">25dp</dimen>
     <dimen name="itch_activity_login_button_horizontal_padding">30dp</dimen>
 
 </resources>

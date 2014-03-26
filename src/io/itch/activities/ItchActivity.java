@@ -1,10 +1,9 @@
 package io.itch.activities;
 
 import io.itch.R;
-import io.itch.R.id;
-import io.itch.R.layout;
 import io.itch.authentication.SessionHelper;
 import io.itch.authentication.SessionHelper.SessionCallback;
+import io.itch.compat.ActionBarHelper;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +17,8 @@ public class ItchActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_itch);
+
+        ActionBarHelper.hideActionBar(this);
 
         final SessionCallback onLogin = new SessionCallback() {
             @Override
