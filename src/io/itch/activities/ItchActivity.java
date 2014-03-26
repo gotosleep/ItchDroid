@@ -1,5 +1,8 @@
-package io.itch;
+package io.itch.activities;
 
+import io.itch.R;
+import io.itch.R.id;
+import io.itch.R.layout;
 import io.itch.authentication.SessionHelper;
 import io.itch.authentication.SessionHelper.SessionCallback;
 import android.app.Activity;

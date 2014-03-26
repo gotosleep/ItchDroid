@@ -1,6 +1,6 @@
 package io.itch.authentication;
 
-import io.itch.LoginActivity;
+import io.itch.activities.LoginActivity;
 import android.accounts.AbstractAccountAuthenticator;
 import android.accounts.Account;
 import android.accounts.AccountAuthenticatorResponse;

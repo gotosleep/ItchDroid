@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/itch_activity_logo_margin_bottom"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/ic_itch" />
 
         <Button
             android:id="@+id/buttonLogin"

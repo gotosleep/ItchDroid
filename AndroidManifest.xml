@@ -18,9 +18,9 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_itch"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme" android:name="ItchApp">
         <activity
-            android:name="ItchActivity"
+            android:name=".activities.ItchActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,11 +28,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="io.itch.MyGamesActivity"
+            android:name=".activities.MyGamesActivity"
             android:label="@string/my_games_activity_title" >
         </activity>
         <activity
-            android:name="io.itch.LoginActivity"
+            android:name=".activities.LoginActivity"
             android:label="@string/title_activity_login"
             android:windowSoftInputMode="adjustResize|stateVisible" >
         </activity>

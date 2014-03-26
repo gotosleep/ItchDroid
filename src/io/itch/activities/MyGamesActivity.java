@@ -1,6 +1,9 @@
-package io.itch;
+package io.itch.activities;
 
+import io.itch.R;
 import io.itch.R.id;
+import io.itch.R.layout;
+import io.itch.R.menu;
 import io.itch.api.ItchApi;
 import io.itch.api.ItchApiClient;
 import io.itch.api.responses.GamesResponse;
