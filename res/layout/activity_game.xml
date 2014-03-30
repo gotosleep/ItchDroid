@@ -1,44 +1,60 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-    <ImageView
-        android:id="@+id/imageViewGameImage"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="@dimen/game_section_margin_bottom"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_itch" />
-
-    <TextView
-        android:id="@+id/textViewGameDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageViewGameImage"
-        android:layout_marginBottom="@dimen/game_section_margin_bottom"
-        android:layout_marginLeft="@dimen/game_label_margin_left"
-        android:layout_marginRight="@dimen/game_label_margin_left"
-        android:text="A totally sweet game"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textStyle="italic" />
-
-    <include
-        android:id="@+id/viewGroupStats"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewGameDescription"
-        android:layout_marginBottom="@dimen/game_section_margin_bottom"
-        layout="@layout/partial_game_stats" />
-
-    <LinearLayout
-        android:id="@+id/viewGroupFields"
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/viewGroupStats"
-        android:orientation="vertical" >
-    </LinearLayout>
+        android:paddingBottom="@dimen/activity_scroll_padding_bottom" >
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/imageViewGameImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="@dimen/game_section_margin_bottom"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_itch" />
+
+        <TextView
+            android:id="@+id/textViewGameTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageViewGameImage"
+            android:layout_marginBottom="@dimen/game_section_margin_bottom"
+            android:layout_marginLeft="@dimen/game_label_margin_left"
+            android:layout_marginRight="@dimen/game_label_margin_left"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/textViewGameDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewGameTitle"
+            android:layout_marginBottom="@dimen/game_section_margin_bottom"
+            android:layout_marginLeft="@dimen/game_label_margin_left"
+            android:layout_marginRight="@dimen/game_label_margin_left"
+            android:text="A totally sweet game"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="italic" />
+
+        <include
+            android:id="@+id/viewGroupStats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewGameDescription"
+            android:layout_marginBottom="@dimen/game_section_margin_bottom"
+            layout="@layout/partial_game_stats" />
+
+        <LinearLayout
+            android:id="@+id/viewGroupFields"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/viewGroupStats"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </RelativeLayout>
+
+</ScrollView>

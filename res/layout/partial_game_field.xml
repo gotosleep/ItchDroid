@@ -4,19 +4,21 @@
 
     <TextView
         android:id="@+id/textViewGameFieldLabel"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/game_field_margin_bottom"
         android:layout_marginLeft="@dimen/game_label_margin_left"
         android:layout_marginRight="@dimen/game_label_margin_right"
+        android:layout_weight="1"
         android:text="@string/game_published_label"
         android:textSize="16sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textViewGameFieldValue"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="2"
         android:text="@string/game_views_label"
         android:textSize="16sp" />
 
