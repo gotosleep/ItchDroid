@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="14"
         android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -15,15 +15,17 @@
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
 
     <application
+        android:name="ItchApp"
         android:allowBackup="true"
         android:icon="@drawable/ic_itch"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" android:name="ItchApp">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".activities.ItchActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -46,6 +48,13 @@
                 android:name="android.accounts.AccountAuthenticator"
                 android:resource="@xml/authenticator" />
         </service>
+
+        <activity
+            android:name=".activities.GameActivity" android:parentActivityName=".activities.MyGamesActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MyGamesActivity" />
+        </activity>
     </application>
 
 </manifest>

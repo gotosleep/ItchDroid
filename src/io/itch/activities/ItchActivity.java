@@ -3,22 +3,19 @@ package io.itch.activities;
 import io.itch.R;
 import io.itch.authentication.SessionHelper;
 import io.itch.authentication.SessionHelper.SessionCallback;
-import io.itch.compat.ActionBarHelper;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class ItchActivity extends Activity {
+public class ItchActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_itch);
-
-        ActionBarHelper.hideActionBar(this);
+        getActionBar().hide();
 
         final SessionCallback onLogin = new SessionCallback() {
             @Override

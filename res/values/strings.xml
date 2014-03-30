@@ -11,8 +11,15 @@
     <string name="game_downloads_label">DOWNLOADS</string>
     <string name="game_published_label">Published</string>
     <string name="game_published_not_value">Not published, yet</string>
+    <string name="game_created_at_label">Created At</string>
+    <string name="game_platforms_label">Platforms</string>
+    <string name="game_type_label">Game Type</string>
     <string name="my_games_activity_title">My Games</string>
     <string name="game_earnings_label">Earnings</string>
     <string name="button_login">Log in</string>
+    <string name="activity_empty_default">Sorry, nothing to see here :(</string>
+    <string name="my_games_activity_empty">You have no games!!! ? :(</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_open_browser">Open in browser</string>
     
 </resources>

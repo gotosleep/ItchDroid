@@ -1,0 +1,84 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/viewGroupStats"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/game_section_margin_bottom"
+    android:baselineAligned="false" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <TextView
+            android:id="@+id/textViewViewsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="@dimen/game_label_margin_right"
+            android:text="@string/game_views_label"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textViewViewsValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewViewsLabel"
+            android:layout_centerHorizontal="true"
+            android:text="@string/game_views_label"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <TextView
+            android:id="@+id/textViewPurchasesLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="@dimen/game_label_margin_right"
+            android:text="@string/game_purchases_label"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textViewPurchasesValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewPurchasesLabel"
+            android:layout_centerHorizontal="true"
+            android:text="@string/game_views_label"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <TextView
+            android:id="@+id/textViewDownloadsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="@dimen/game_label_margin_right"
+            android:text="@string/game_downloads_label"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textViewDownloadsValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewDownloadsLabel"
+            android:layout_centerHorizontal="true"
+            android:text="@string/game_views_label"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+</LinearLayout>

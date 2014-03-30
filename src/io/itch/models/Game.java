@@ -1,17 +1,23 @@
 package io.itch.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Game {
+import android.os.Parcel;
+import android.os.Parcelable;
 
-    private Boolean pOSX;
-    private Boolean pAndroid;
-    private Boolean pWindows;
-    private Boolean pLinux;
+public class Game implements Parcelable {
+
+    private static final int FIELD_PUBLISHED_AT = 1 << 0;
+
+    private boolean pOsx;
+    private boolean pAndroid;
+    private boolean pWindows;
+    private boolean pLinux;
     private Float minPrice;
     private Long id;
-    private Boolean published;
+    private boolean published;
     private Long viewsCount;
     private Date createdAt;
     private Date publishedAt;
@@ -24,35 +30,35 @@ public class Game {
     private String coverUrl;
     private List<Earning> earnings;
 
-    public Boolean getpOSX() {
-        return pOSX;
+    public boolean getPOsx() {
+        return pOsx;
     }
 
-    public void setpOSX(Boolean pOSX) {
-        this.pOSX = pOSX;
+    public void setPOsx(boolean pOSX) {
+        this.pOsx = pOSX;
     }
 
-    public Boolean getpAndroid() {
+    public boolean getPAndroid() {
         return pAndroid;
     }
 
-    public void setpAndroid(Boolean pAndroid) {
+    public void setPAndroid(boolean pAndroid) {
         this.pAndroid = pAndroid;
     }
 
-    public Boolean getpWindows() {
+    public boolean getPWindows() {
         return pWindows;
     }
 
-    public void setpWindows(Boolean pWindows) {
+    public void setPWindows(boolean pWindows) {
         this.pWindows = pWindows;
     }
 
-    public Boolean getpLinux() {
+    public boolean getPLinux() {
         return pLinux;
     }
 
-    public void setpLinux(Boolean pLinux) {
+    public void setPLinux(boolean pLinux) {
         this.pLinux = pLinux;
     }
 
@@ -72,11 +78,11 @@ public class Game {
         this.id = id;
     }
 
-    public Boolean getPublished() {
+    public boolean getPublished() {
         return published;
     }
 
-    public void setPublished(Boolean published) {
+    public void setPublished(boolean published) {
         this.published = published;
     }
 
@@ -182,4 +188,84 @@ public class Game {
         }
         return result;
     }
+
+    @Override
+    public int describeContents() {
+        int result = 0;
+        if (this.getPublishedAt() != null) {
+            result |= FIELD_PUBLISHED_AT;
+        }
+        return result;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int flags) {
+        int contents = describeContents();
+        parcel.writeInt(contents);
+        parcel.writeValue(getPOsx());
+        parcel.writeValue(getPWindows());
+        parcel.writeValue(getPLinux());
+        parcel.writeValue(getPAndroid());
+        parcel.writeFloat(getMinPrice());
+        parcel.writeLong(getId());
+        parcel.writeValue(getPublished());
+        parcel.writeLong(getViewsCount());
+        parcel.writeLong(getCreatedAt().getTime());
+        if ((contents & FIELD_PUBLISHED_AT) == FIELD_PUBLISHED_AT) {
+            parcel.writeLong(getPublishedAt().getTime());
+        }
+        parcel.writeLong(getDownloadsCount());
+        parcel.writeString(getTitle());
+        parcel.writeString(getUrl());
+        parcel.writeLong(getPurchasesCount());
+        parcel.writeString(getShortText());
+        parcel.writeString(getType());
+        parcel.writeString(getCoverUrl());
+        parcel.writeTypedList(getEarnings());
+    }
+
+    public static final Parcelable.Creator<Game> CREATOR = new Parcelable.Creator<Game>() {
+
+        @Override
+        public Game createFromParcel(Parcel source) {
+            Game result = new Game();
+            int contents = source.readInt();
+            result.setPOsx((Boolean) source.readValue(null));
+            result.setPWindows((Boolean) source.readValue(null));
+            result.setPLinux((Boolean) source.readValue(null));
+            result.setPAndroid((Boolean) source.readValue(null));
+            result.setMinPrice(source.readFloat());
+            result.setId(source.readLong());
+            result.setPublished((Boolean) source.readValue(null));
+            result.setViewsCount(source.readLong());
+            result.setCreatedAt(dateFrom(source.readLong()));
+            if ((contents & FIELD_PUBLISHED_AT) == FIELD_PUBLISHED_AT) {
+                result.setPublishedAt(dateFrom(source.readLong()));
+            }
+            result.setDownloadsCount(source.readLong());
+            result.setTitle(source.readString());
+            result.setUrl(source.readString());
+            result.setPurchasesCount(source.readLong());
+            result.setShortText(source.readString());
+            result.setType(source.readString());
+            result.setCoverUrl(source.readString());
+
+            List<Earning> earnings = new ArrayList<Earning>();
+            source.readTypedList(earnings, Earning.CREATOR);
+            result.setEarnings(earnings);
+
+            return result;
+        }
+
+        private Date dateFrom(Long time) {
+            Date result = new Date();
+            result.setTime(time);
+            return result;
+        }
+
+        @Override
+        public Game[] newArray(int size) {
+            return new Game[size];
+        }
+    };
 }

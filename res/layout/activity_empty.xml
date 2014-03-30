@@ -1,0 +1,30 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/emptyView" >
+
+    <LinearLayout
+        android:id="@+id/linearLayoutEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/imageViewEmptyImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_empty_image_margin_bottom"
+            android:src="@drawable/ic_itch" />
+
+        <TextView
+            android:id="@+id/textViewEmptyMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_empty_default"
+            android:textSize="@dimen/text_size_large" />
+
+    </LinearLayout>
+
+</RelativeLayout>
