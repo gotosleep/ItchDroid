@@ -65,4 +65,9 @@ public class GameActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected String getScreenPath() {
+        return "Game";
+    }
+
 }

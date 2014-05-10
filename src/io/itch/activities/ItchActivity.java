@@ -47,4 +47,9 @@ public class ItchActivity extends BaseActivity {
         finish();
     }
 
+    @Override
+    protected String getScreenPath() {
+        return "Start";
+    }
+
 }

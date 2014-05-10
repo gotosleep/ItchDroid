@@ -1,5 +1,6 @@
 package io.itch.activities;
 
+import io.itch.ItchApp;
 import io.itch.R;
 import io.itch.api.ItchApiClient;
 import io.itch.api.responses.KeyResponse;
@@ -20,6 +21,9 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 /**
  * Activity which displays a login screen to the user, offering registration as
@@ -95,6 +99,14 @@ public class LoginActivity extends AccountAuthenticatorActivity {
                 attemptLogin();
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Tracker t = ((ItchApp) this.getApplication()).getTracker();
+        t.setScreenName("Login");
+        t.send(new HitBuilders.AppViewBuilder().build());
     }
 
     @Override

@@ -1,10 +1,14 @@
 package io.itch.activities;
 
+import io.itch.ItchApp;
 import io.itch.R;
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 abstract class BaseActivity extends Activity {
 
@@ -21,4 +25,13 @@ abstract class BaseActivity extends Activity {
         return R.string.activity_empty_default;
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Tracker t = ((ItchApp) this.getApplication()).getTracker();
+        t.setScreenName(getScreenPath());
+        t.send(new HitBuilders.AppViewBuilder().build());
+    }
+
+    protected abstract String getScreenPath();
 }

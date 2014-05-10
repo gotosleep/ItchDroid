@@ -125,4 +125,9 @@ public class MyGamesActivity extends BaseActivity {
         });
     }
 
+    @Override
+    protected String getScreenPath() {
+        return "My Games";
+    }
+
 }
