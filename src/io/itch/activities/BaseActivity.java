@@ -5,6 +5,7 @@ import io.itch.R;
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.gms.analytics.HitBuilders;
@@ -33,5 +34,36 @@ abstract class BaseActivity extends Activity {
         t.send(new HitBuilders.AppViewBuilder().build());
     }
 
+    protected ScrollPosition preserveScroll(ListView list) {
+        int index = list.getFirstVisiblePosition();
+        View v = list.getChildAt(0);
+        int top = (v == null) ? 0 : v.getTop();
+        return new ScrollPosition(index, top);
+    }
+
+    protected void restoreScroll(ListView list, ScrollPosition position) {
+        list.setSelectionFromTop(position.getIndex(), position.getTop());
+    }
+
     protected abstract String getScreenPath();
+
+    protected static final class ScrollPosition {
+        private final Integer index;
+        private final Integer top;
+
+        private ScrollPosition(Integer index, Integer top) {
+            super();
+            this.index = index;
+            this.top = top;
+        }
+
+        public Integer getIndex() {
+            return index;
+        }
+
+        public Integer getTop() {
+            return top;
+        }
+
+    }
 }

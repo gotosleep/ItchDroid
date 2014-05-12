@@ -1,67 +1,74 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content" >
-
-    <ImageView
-        android:id="@+id/imageViewGameImage"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignBottom="@+id/viewGroupNewsHeaderInfo"
-        android:layout_alignTop="@+id/viewGroupNewsHeaderInfo"
-        android:scaleType="centerCrop"
-        android:src="@drawable/news_background" />
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@+id/viewGroupNewsHeaderInfo"
+        android:id="@+id/viewGroupNewsHeaderContent"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/news_header_padding_vertical"
-        android:paddingLeft="@dimen/news_header_padding_horizontal"
-        android:paddingRight="@dimen/news_header_padding_horizontal"
-        android:paddingTop="@dimen/news_header_padding_vertical" >
+        android:layout_height="wrap_content" >
 
-        <TextView
-            android:id="@+id/textViewNewsHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/news_latest_margin_bottom"
-            android:text="@string/news_latest"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@android:color/black"
-            android:textStyle="italic|bold" />
+        <ImageView
+            android:id="@+id/imageViewGameImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignBottom="@+id/viewGroupNewsHeaderInfo"
+            android:layout_alignTop="@+id/viewGroupNewsHeaderInfo"
+            android:scaleType="centerCrop"
+            android:src="@drawable/news_background" />
 
-        <TextView
-            android:id="@+id/textViewNewsTitle"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/viewGroupNewsHeaderInfo"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textViewNewsHeader"
-            android:text="Medium Text"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#A33446"
-            android:textStyle="bold" />
+            android:paddingBottom="@dimen/news_header_padding_vertical"
+            android:paddingLeft="@dimen/news_header_padding_horizontal"
+            android:paddingRight="@dimen/news_header_padding_horizontal"
+            android:paddingTop="@dimen/news_header_padding_vertical" >
 
-        <TextView
-            android:id="@+id/textViewNewsBody"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textViewNewsTitle"
-            android:maxLines="2"
-            android:text="Large Text"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@android:color/black" />
+            <TextView
+                android:id="@+id/textViewNewsHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/news_latest_margin_bottom"
+                android:text="@string/news_latest"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@android:color/black"
+                android:textStyle="italic|bold" />
 
-        <TextView
-            android:id="@+id/textViewNewsReadMore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/textViewNewsBody"
-            android:layout_marginTop="@dimen/news_header_read_more_margin_top"
-            android:text="@string/news_read_more"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@android:color/black" />
+            <TextView
+                android:id="@+id/textViewNewsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewNewsHeader"
+                android:text="Medium Text"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#A33446"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewNewsBody"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewNewsTitle"
+                android:maxLines="2"
+                android:text="Large Text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/textViewNewsReadMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/textViewNewsBody"
+                android:layout_marginTop="@dimen/news_header_read_more_margin_top"
+                android:text="@string/news_read_more"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@android:color/black" />
+        </RelativeLayout>
     </RelativeLayout>
 
-</RelativeLayout>
+</LinearLayout>

@@ -29,17 +29,20 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 public class MyGamesActivity extends BaseActivity {
 
     private ListView gamesList;
     private ArrayAdapter<Game> gamesAdapter;
     private View header;
+    private ProgressBar progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_games);
+        this.progress = (ProgressBar) findViewById(R.id.progressBarLoading);
         this.gamesList = (ListView) findViewById(id.listViewGames);
         this.gamesAdapter = new GameAdapter(this, R.layout.list_item_game);
         loadNewsHeader(null);
@@ -120,16 +123,21 @@ public class MyGamesActivity extends BaseActivity {
     }
 
     private void updateGames() {
+        if (gamesAdapter.getCount() == 0) {
+            this.progress.setVisibility(View.VISIBLE);
+        }
         ItchApi api = ItchApiClient.getClient();
         api.listMyGames(new Callback<GamesResponse>() {
 
             @Override
             public void success(GamesResponse result, Response arg1) {
                 if (gamesAdapter != null && result != null && result.getGames() != null) {
+                    ScrollPosition p = preserveScroll(gamesList);
                     gamesAdapter.clear();
-                    for (Game game : result.getGames()) {
-                        gamesAdapter.add(game);
-                    }
+                    gamesAdapter.addAll(result.getGames());
+                    gamesAdapter.notifyDataSetChanged();
+                    progress.setVisibility(View.GONE);
+                    restoreScroll(gamesList, p);
                 }
             }
 
@@ -151,7 +159,6 @@ public class MyGamesActivity extends BaseActivity {
 
             @Override
             public void success(PostsResponse result, Response arg1) {
-                Log.i("Itch", "Got news: " + result);
                 if (result != null && result.getResponse() != null && result.getResponse().getPosts() != null
                         && result.getResponse().getPosts().size() > 0) {
                     loadNewsHeader(result.getResponse().getPosts().get(0));
@@ -162,12 +169,14 @@ public class MyGamesActivity extends BaseActivity {
 
     private void loadNewsHeader(Post post) {
         View header = getHeader();
+        View content = header.findViewById(R.id.viewGroupNewsHeaderContent);
         if (post != null) {
-            header.setVisibility(View.VISIBLE);
+            content.setVisibility(View.VISIBLE);
             PostViewHelper.populateView(this, header, post);
             header.invalidate();
+            gamesAdapter.notifyDataSetChanged();
         } else {
-            header.setVisibility(View.GONE);
+            content.setVisibility(View.GONE);
         }
     }
 
