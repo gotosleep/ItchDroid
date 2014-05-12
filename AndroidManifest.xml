@@ -58,6 +58,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MyGamesActivity" />
         </activity>
+        <activity android:name=".activities.NewsActivity" android:parentActivityName=".activities.MyGamesActivity" android:label="@string/news_activity_title"></activity>
     </application>
 
 </manifest>

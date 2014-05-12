@@ -16,5 +16,9 @@
     <dimen name="activity_empty_image_margin_bottom">30dp</dimen>
     <dimen name="text_size_large">24sp</dimen>
     <dimen name="activity_scroll_padding_bottom">20dp</dimen>
+    <dimen name="news_header_padding_vertical">10dp</dimen>
+    <dimen name="news_header_padding_horizontal">30dp</dimen>
+    <dimen name="news_latest_margin_bottom">10dp</dimen>
+    <dimen name="news_header_read_more_margin_top">10dp</dimen>
 
 </resources>

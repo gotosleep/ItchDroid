@@ -5,17 +5,23 @@ import io.itch.R;
 import io.itch.R.id;
 import io.itch.api.ItchApi;
 import io.itch.api.ItchApiClient;
+import io.itch.api.TumblrApi;
+import io.itch.api.TumblrApiClient;
 import io.itch.api.responses.GamesResponse;
+import io.itch.api.responses.PostsResponse;
 import io.itch.authentication.SessionHelper;
 import io.itch.authentication.SessionHelper.SessionCallback;
 import io.itch.lists.GameAdapter;
 import io.itch.models.Game;
+import io.itch.models.tumblr.Post;
+import io.itch.views.PostViewHelper;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +34,7 @@ public class MyGamesActivity extends BaseActivity {
 
     private ListView gamesList;
     private ArrayAdapter<Game> gamesAdapter;
+    private View header;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +48,18 @@ public class MyGamesActivity extends BaseActivity {
 
             @Override
             public void onItemClick(AdapterView<?> list, View item, int position, long id) {
-                Game game = gamesAdapter.getItem(position);
-                if (game != null) {
-                    Intent i = new Intent(MyGamesActivity.this, GameActivity.class);
-                    i.putExtra(Extras.EXTRA_GAME, game);
-                    // Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(game.getUrl()));
+                Integer headerCount = gamesList.getHeaderViewsCount();
+                if (headerCount > 0 && position < headerCount) {
+                    Intent i = new Intent(MyGamesActivity.this, NewsActivity.class);
                     startActivity(i);
+                } else {
+                    position -= headerCount;
+                    Game game = gamesAdapter.getItem(position);
+                    if (game != null) {
+                        Intent i = new Intent(MyGamesActivity.this, GameActivity.class);
+                        i.putExtra(Extras.EXTRA_GAME, game);
+                        startActivity(i);
+                    }
                 }
             }
         });
@@ -56,6 +69,7 @@ public class MyGamesActivity extends BaseActivity {
     protected void onStart() {
         super.onStart();
         this.updateGames();
+        this.updateNews();
     }
 
     @Override
@@ -123,6 +137,45 @@ public class MyGamesActivity extends BaseActivity {
                 Log.e("Itch", "Failed to retrieve games", e);
             }
         });
+    }
+
+    private void updateNews() {
+        TumblrApi api = TumblrApiClient.getClient();
+        api.listPosts(1, new Callback<PostsResponse>() {
+
+            @Override
+            public void failure(RetrofitError e) {
+                Log.e("Itch", "Failed to retrieve news", e);
+            }
+
+            @Override
+            public void success(PostsResponse result, Response arg1) {
+                Log.i("Itch", "Got news: " + result);
+                if (result != null && result.getResponse() != null && result.getResponse().getPosts() != null
+                        && result.getResponse().getPosts().size() > 0) {
+                    loadNewsHeader(result.getResponse().getPosts().get(0));
+                }
+            }
+        });
+    }
+
+    private void loadNewsHeader(Post post) {
+        View header = LayoutInflater.from(this).inflate(R.layout.news_header, null);
+        PostViewHelper.populateView(this, header, post);
+        ListView list = (ListView) findViewById(R.id.listViewGames);
+        setHeader(header, list);
+    }
+
+    private void setHeader(View header, ListView list) {
+        if (header != this.header) {
+            if (this.header != null) {
+                list.removeHeaderView(this.header);
+            }
+            this.header = header;
+            if (this.header != null) {
+                list.addHeaderView(this.header);
+            }
+        }
     }
 
     @Override
