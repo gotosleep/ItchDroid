@@ -42,6 +42,7 @@ public class MyGamesActivity extends BaseActivity {
         setContentView(R.layout.activity_my_games);
         this.gamesList = (ListView) findViewById(id.listViewGames);
         this.gamesAdapter = new GameAdapter(this, R.layout.list_item_game);
+        loadNewsHeader(null);
         this.gamesList.setAdapter(this.gamesAdapter);
         this.gamesList.setEmptyView(getEmptyView());
         this.gamesList.setOnItemClickListener(new OnItemClickListener() {
@@ -68,8 +69,8 @@ public class MyGamesActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        this.updateGames();
         this.updateNews();
+        this.updateGames();
     }
 
     @Override
@@ -160,22 +161,23 @@ public class MyGamesActivity extends BaseActivity {
     }
 
     private void loadNewsHeader(Post post) {
-        View header = LayoutInflater.from(this).inflate(R.layout.news_header, null);
-        PostViewHelper.populateView(this, header, post);
-        ListView list = (ListView) findViewById(R.id.listViewGames);
-        setHeader(header, list);
+        View header = getHeader();
+        if (post != null) {
+            header.setVisibility(View.VISIBLE);
+            PostViewHelper.populateView(this, header, post);
+            header.invalidate();
+        } else {
+            header.setVisibility(View.GONE);
+        }
     }
 
-    private void setHeader(View header, ListView list) {
-        if (header != this.header) {
-            if (this.header != null) {
-                list.removeHeaderView(this.header);
-            }
-            this.header = header;
-            if (this.header != null) {
-                list.addHeaderView(this.header);
-            }
+    private View getHeader() {
+        if (this.header == null) {
+            this.header = LayoutInflater.from(this).inflate(R.layout.news_header, null);
+            ListView list = (ListView) findViewById(R.id.listViewGames);
+            list.addHeaderView(this.header);
         }
+        return this.header;
     }
 
     @Override
