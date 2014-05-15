@@ -178,10 +178,7 @@ public class Game implements Parcelable {
         Earning result = null;
         if (this.earnings != null && this.earnings.size() > 0) {
             for (Earning e : this.earnings) {
-                if ("USD".equalsIgnoreCase(e.getCurrency())) {
-                    result = e;
-                    break;
-                } else if (result == null) {
+                if (result == null || e.getAmount() > result.getAmount()) {
                     result = e;
                 }
             }
