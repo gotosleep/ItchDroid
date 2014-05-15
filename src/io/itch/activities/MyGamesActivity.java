@@ -37,6 +37,8 @@ public class MyGamesActivity extends BaseActivity {
     private ArrayAdapter<Game> gamesAdapter;
     private View header;
     private ProgressBar progress;
+    private Post latestNews;
+    private Post seenInThisSession;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,16 @@ public class MyGamesActivity extends BaseActivity {
         super.onStart();
         this.updateNews();
         this.updateGames();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Post post = this.getLatestNews();
+        if (post != null && !PostViewHelper.hasBeenSeen(this, post)) {
+            this.setSeenInThisSession(post);
+            PostViewHelper.setHasBeenSeen(this, post);
+        }
     }
 
     @Override
@@ -161,7 +173,8 @@ public class MyGamesActivity extends BaseActivity {
             public void success(PostsResponse result, Response arg1) {
                 if (result != null && result.getResponse() != null && result.getResponse().getPosts() != null
                         && result.getResponse().getPosts().size() > 0) {
-                    loadNewsHeader(result.getResponse().getPosts().get(0));
+                    setLatestNews(result.getResponse().getPosts().get(0));
+                    loadNewsHeader(getLatestNews());
                 }
             }
         });
@@ -170,13 +183,23 @@ public class MyGamesActivity extends BaseActivity {
     private void loadNewsHeader(Post post) {
         View header = getHeader();
         View content = header.findViewById(R.id.viewGroupNewsHeaderContent);
+        View collapsed = header.findViewById(R.id.viewGroupNewsHeaderContentCollapsed);
         if (post != null) {
-            content.setVisibility(View.VISIBLE);
-            PostViewHelper.populateView(this, header, post);
+            View view;
+            if (PostViewHelper.hasBeenSeen(this, post) && this.getSeenInThisSession() == null) {
+                content.setVisibility(View.GONE);
+                view = collapsed;
+            } else {
+                collapsed.setVisibility(View.GONE);
+                view = content;
+            }
+            view.setVisibility(View.VISIBLE);
+            PostViewHelper.populateView(this, view, post);
             header.invalidate();
             gamesAdapter.notifyDataSetChanged();
         } else {
             content.setVisibility(View.GONE);
+            collapsed.setVisibility(View.GONE);
         }
     }
 
@@ -187,6 +210,22 @@ public class MyGamesActivity extends BaseActivity {
             list.addHeaderView(this.header);
         }
         return this.header;
+    }
+
+    public Post getLatestNews() {
+        return latestNews;
+    }
+
+    public void setLatestNews(Post latestNews) {
+        this.latestNews = latestNews;
+    }
+
+    public Post getSeenInThisSession() {
+        return seenInThisSession;
+    }
+
+    public void setSeenInThisSession(Post seen) {
+        this.seenInThisSession = seen;
     }
 
     @Override

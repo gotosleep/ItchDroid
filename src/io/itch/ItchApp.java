@@ -21,8 +21,7 @@ public class ItchApp extends Application {
         if (this.tracker == null) {
             synchronized (LOCK) {
                 if (this.tracker == null) {
-                    GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
-                    this.tracker = analytics.newTracker(R.xml.ga);
+                    this.tracker = GoogleAnalytics.getInstance(this).newTracker(R.xml.ga);
                 }
             }
         }

@@ -34,7 +34,7 @@
         </activity>
         <activity
             android:name=".activities.MyGamesActivity"
-            android:label="@string/my_games_activity_title" >
+            android:label="@string/my_games_activity_title" android:launchMode="singleTop">
         </activity>
         <activity
             android:name=".activities.LoginActivity"

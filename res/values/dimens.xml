@@ -20,5 +20,6 @@
     <dimen name="news_header_padding_horizontal">30dp</dimen>
     <dimen name="news_latest_margin_bottom">10dp</dimen>
     <dimen name="news_header_read_more_margin_top">10dp</dimen>
+    <dimen name="news_header_collapsed_margin_right">5dp</dimen>
 
 </resources>

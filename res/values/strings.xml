@@ -24,5 +24,8 @@
     <string name="menu_open_browser">Open in browser</string>
     <string name="news_latest">LATEST NEWS</string>
     <string name="news_read_more">Read More...</string>
+    <string name="news_read">READ NEWS</string>
+    <string name="news_read_more_collapsed">more</string>
+    <string name="news_header_collapsed">NEWS:</string>
 
 </resources>
