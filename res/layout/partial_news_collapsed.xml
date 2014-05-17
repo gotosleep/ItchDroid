@@ -29,8 +29,8 @@
             android:text="@string/news_header_collapsed"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@android:color/black"
-            android:textStyle="italic|bold" />
-        
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/textViewNewsTitle"
             android:layout_width="wrap_content"
@@ -40,9 +40,9 @@
             android:lines="1"
             android:text="Medium Text Medium Text Medium Text Medium Text"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:singleLine="true"
             android:textColor="#A33446"
             android:textStyle="bold" />
-
     </LinearLayout>
 
 </RelativeLayout>

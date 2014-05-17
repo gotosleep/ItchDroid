@@ -1,6 +1,16 @@
 package io.itch.models.tumblr;
 
+import android.annotation.SuppressLint;
+
 public class Post {
+
+    public static enum Type {
+        UNKNOWN,
+        TEXT,
+        LINK,
+        VIDEO,
+        AUDIO
+    }
 
     private String title;
     private String body;
@@ -8,6 +18,8 @@ public class Post {
     private String type;
     private String url;
     private String description;
+    private String caption;
+    private Type postType;
 
     public String getTitle() {
         return title;
@@ -57,4 +69,23 @@ public class Post {
         this.description = description;
     }
 
+    public String getCaption() {
+        return caption;
+    }
+
+    public void setCaption(String caption) {
+        this.caption = caption;
+    }
+
+    @SuppressLint("DefaultLocale")
+    public Type getPostType() {
+        if (this.postType == null) {
+            try {
+                this.postType = Type.valueOf(this.getType().toUpperCase());
+            } catch (Exception e) {
+                this.postType = Type.UNKNOWN;
+            }
+        }
+        return this.postType;
+    }
 }
