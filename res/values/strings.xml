@@ -26,6 +26,6 @@
     <string name="news_read_more">Read More...</string>
     <string name="news_read">READ NEWS</string>
     <string name="news_read_more_collapsed">more</string>
-    <string name="news_header_collapsed">NEWS:</string>
+    <string name="news_header_collapsed">News:</string>
 
 </resources>

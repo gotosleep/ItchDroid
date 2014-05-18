@@ -41,7 +41,7 @@ public class PostViewHelper {
         setText(titleView, titleText, false);
 
         TextView bodyView = (TextView) result.findViewById(R.id.textViewNewsBody);
-        setText(bodyView, bodyText, true);
+        setText(bodyView, bodyText, false);
     }
 
     private static void setText(TextView view, String text, boolean keepHtml) {
