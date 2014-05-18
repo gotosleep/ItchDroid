@@ -38,7 +38,7 @@ public class MyGamesActivity extends BaseActivity {
     private View header;
     private ProgressBar progress;
     private Post latestNews;
-    private Post seenInThisSession;
+    private boolean preventCollapse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +58,7 @@ public class MyGamesActivity extends BaseActivity {
                 if (headerCount > 0 && position < headerCount) {
                     Intent i = new Intent(MyGamesActivity.this, NewsActivity.class);
                     startActivity(i);
+                    setPreventCollapse(false);
                 } else {
                     position -= headerCount;
                     Game game = gamesAdapter.getItem(position);
@@ -83,7 +84,7 @@ public class MyGamesActivity extends BaseActivity {
         super.onStop();
         Post post = this.getLatestNews();
         if (post != null && !PostViewHelper.hasBeenSeen(this, post)) {
-            this.setSeenInThisSession(post);
+            this.setPreventCollapse(true);
             PostViewHelper.setHasBeenSeen(this, post);
         }
     }
@@ -186,7 +187,7 @@ public class MyGamesActivity extends BaseActivity {
         View collapsed = header.findViewById(R.id.viewGroupNewsHeaderContentCollapsed);
         if (post != null) {
             View view;
-            if (PostViewHelper.hasBeenSeen(this, post) && this.getSeenInThisSession() == null) {
+            if (PostViewHelper.hasBeenSeen(this, post) && !this.preventCollapse()) {
                 content.setVisibility(View.GONE);
                 view = collapsed;
             } else {
@@ -220,12 +221,12 @@ public class MyGamesActivity extends BaseActivity {
         this.latestNews = latestNews;
     }
 
-    public Post getSeenInThisSession() {
-        return seenInThisSession;
+    public boolean preventCollapse() {
+        return preventCollapse;
     }
 
-    public void setSeenInThisSession(Post seen) {
-        this.seenInThisSession = seen;
+    public void setPreventCollapse(boolean flag) {
+        this.preventCollapse = flag;
     }
 
     @Override
