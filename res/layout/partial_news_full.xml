@@ -49,6 +49,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/textViewNewsTitle"
             android:maxLines="2"
+            android:textColorLink="@android:color/black"
+            android:linksClickable="false"
             android:text="Large Text"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@android:color/black" />

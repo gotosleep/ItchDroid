@@ -1,6 +1,7 @@
 package io.itch.api;
 
 import io.itch.api.responses.GamesResponse;
+import io.itch.api.responses.GraphsResponse;
 import io.itch.api.responses.KeyResponse;
 import retrofit.Callback;
 import retrofit.http.GET;
@@ -16,4 +17,6 @@ public interface ItchApi {
     @POST("/login?source=android")
     public KeyResponse login(@Query("username") String username, @Query("password") String password);
 
+    @GET("/my-games/graphs")
+    public void listGraphs(Callback<GraphsResponse> callback);
 }
