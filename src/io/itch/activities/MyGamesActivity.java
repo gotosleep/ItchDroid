@@ -45,7 +45,7 @@ public class MyGamesActivity extends BaseActivity {
     private View header;
     private ProgressBar progress;
     private Post latestNews;
-    private boolean preventCollapse;
+    private Boolean preventCollapse;
     private GraphView graphView;
     private ViewGroup graphContainer;
     private static final int GRAPH_DAYS = 5;
@@ -187,8 +187,7 @@ public class MyGamesActivity extends BaseActivity {
                     GraphHelper.configureYAxis(graphView, result.getMax(), 4);
                     if (result.getViews() != null) {
                         graphView.addSeries(GraphHelper.generateSeries(MyGamesActivity.this, "Views",
-                                result.getViews(),
-                                GRAPH_DAYS,
+                                result.getViews(), GRAPH_DAYS,
                                 Color.argb(255, 255, 128, 128)));
                     }
                     if (result.getPurchases() != null) {
@@ -199,7 +198,7 @@ public class MyGamesActivity extends BaseActivity {
                     if (result.getDownloads() != null) {
                         graphView.addSeries(GraphHelper.generateSeries(MyGamesActivity.this, "Downloads",
                                 result.getDownloads(), GRAPH_DAYS,
-                                Color.MAGENTA));
+                                Color.rgb(243, 191, 141)));
                     }
                 } else {
                     getGraphContainer().setVisibility(View.GONE);
@@ -299,7 +298,10 @@ public class MyGamesActivity extends BaseActivity {
     }
 
     public void setPreventCollapse(boolean flag) {
-        this.preventCollapse = flag;
+        if (!flag || this.preventCollapse == null) {
+            // cannot switch back from false to true
+            this.preventCollapse = flag;
+        }
     }
 
     @Override
