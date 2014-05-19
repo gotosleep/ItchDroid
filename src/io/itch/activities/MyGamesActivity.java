@@ -294,7 +294,7 @@ public class MyGamesActivity extends BaseActivity {
     }
 
     public boolean preventCollapse() {
-        return preventCollapse;
+        return preventCollapse != null ? preventCollapse : false;
     }
 
     public void setPreventCollapse(boolean flag) {
