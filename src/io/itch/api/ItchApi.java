@@ -18,5 +18,5 @@ public interface ItchApi {
     public KeyResponse login(@Query("username") String username, @Query("password") String password);
 
     @GET("/my-games/graphs")
-    public void listGraphs(Callback<GraphsResponse> callback);
+    public void listGraphs(@Query("num_days") Integer days, Callback<GraphsResponse> callback);
 }

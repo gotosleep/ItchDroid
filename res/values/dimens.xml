@@ -21,5 +21,9 @@
     <dimen name="news_latest_margin_bottom">10dp</dimen>
     <dimen name="news_header_read_more_margin_top">10dp</dimen>
     <dimen name="news_header_collapsed_margin_right">5dp</dimen>
+    <dimen name="header_graph_padding_horizontal">15dp</dimen>
+    <dimen name="header_graph_padding_top">10dp</dimen>
+    <dimen name="header_graph_padding_bottom">20dp</dimen>
+    <dimen name="header_graph_margin_top">-15dp</dimen>
 
 </resources>

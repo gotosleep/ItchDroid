@@ -140,7 +140,7 @@ public class ItchApiClient {
                         field.setAccessible(true);
                         Object value;
                         if (entry.getValue().isJsonArray()) {
-                            value = context.deserialize(entry.getValue(), field.getType());
+                            value = context.deserialize(entry.getValue(), field.getGenericType());
                         } else {
                             value = null;
                         }

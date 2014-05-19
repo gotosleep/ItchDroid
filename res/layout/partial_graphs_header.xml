@@ -1,0 +1,44 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <ImageView
+        android:id="@+id/imageViewGraphsBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/viewGroupGraphWrapper"
+        android:layout_alignTop="@+id/viewGroupGraphWrapper"
+        android:scaleType="fitXY"
+        android:src="@drawable/graph_background" />
+
+    <RelativeLayout
+        android:id="@+id/viewGroupGraphWrapper"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/header_graph_padding_bottom"
+        android:paddingLeft="@dimen/header_graph_padding_horizontal"
+        android:paddingRight="@dimen/header_graph_padding_horizontal"
+        android:paddingTop="@dimen/header_graph_padding_top" >
+
+        <TextView
+            android:id="@+id/textViewGraphHeader"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+            android:text="@string/graph_header"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="bold" >
+        </TextView>
+
+        <LinearLayout
+            android:id="@+id/viewGroupHeaderGraph"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_below="@+id/textViewGraphHeader"
+            android:layout_marginTop="@dimen/header_graph_margin_top"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

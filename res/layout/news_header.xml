@@ -15,4 +15,10 @@
         android:layout_height="wrap_content"
         layout="@layout/partial_news_collapsed" />
 
+    <include
+        android:id="@+id/viewGroupHeaderGraphContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/partial_graphs_header" />
+
 </LinearLayout>
