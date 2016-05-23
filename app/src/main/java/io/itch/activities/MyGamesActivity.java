@@ -34,6 +34,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.LineGraphView;
@@ -44,6 +45,7 @@ public class MyGamesActivity extends BaseActivity {
     private ArrayAdapter<Game> gamesAdapter;
     private View header;
     private ProgressBar progress;
+    private TextView textViewMessage;
     private Post latestNews;
     private Boolean preventCollapse;
     private GraphView graphView;
@@ -55,6 +57,7 @@ public class MyGamesActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_games);
         this.progress = (ProgressBar) findViewById(R.id.progressBarLoading);
+        this.textViewMessage = (TextView) findViewById(id.textViewMessage);
         this.gamesList = (ListView) findViewById(id.listViewGames);
         this.gamesAdapter = new GameAdapter(this, R.layout.list_item_game);
         loadNewsView(null);
@@ -165,12 +168,14 @@ public class MyGamesActivity extends BaseActivity {
                     gamesAdapter.notifyDataSetChanged();
                     progress.setVisibility(View.GONE);
                     restoreScroll(gamesList, p);
+                    textViewMessage.setText("");
                 }
             }
 
             @Override
             public void failure(RetrofitError e) {
-                Log.e("Itch", "Failed to retrieve games", e);
+                progress.setVisibility(View.GONE);
+                textViewMessage.setText("No games found on your developer account.");
             }
         });
     }
