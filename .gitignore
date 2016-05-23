@@ -31,3 +31,6 @@ proguard/
 .idea/libraries
 
 .DS_Store
+
+.idea
+*.iml
